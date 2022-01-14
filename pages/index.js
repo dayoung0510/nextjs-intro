@@ -6,11 +6,7 @@ import Seo from '../components/Seo';
 export default function Home({ results }) {
   const router = useRouter();
   const onClick = (id, title) => {
-    router.push(
-      { pathname: `/movies/${id}`, query: { id, title } },
-      //위에서 작성한 query가 주소창에서 보이지 않도록 처리
-      `/movies/${id}`
-    );
+    router.push(`/movies/${title}/${id}`);
   };
 
   return (
@@ -25,10 +21,7 @@ export default function Home({ results }) {
           <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
           <h4>
             <Link
-              href={{
-                pathname: `/movies/${movie.id}`,
-                query: { title: movie.original_title },
-              }}
+              href={`/movies/${movie.title}/${movie.id}`}
               as={`/movies/${movie.id}`}
             >
               <a>{movie.original_title}</a>
